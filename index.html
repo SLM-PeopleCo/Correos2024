@@ -103,7 +103,7 @@
   .preview-container {
     flex: 1;
     overflow-y: auto;
-    background: #ffffff; /* Fondo exterior para contraste del panel de control */
+    background: #ffffff;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -113,8 +113,8 @@
   /* ===== MOCKUP GMAIL 2024 ===== */
   .gmail-mockup {
     width: 100%;
-    max-width: 1366px; /* Ancho ajustado para evitar zoom */
-    background: #f4f7fc; /* Fondo temático 2024 */
+    max-width: 1366px; 
+    background: #f4f7fc;
     overflow: hidden;
   }
 
@@ -214,7 +214,7 @@
     flex: 1;
     min-width: 0;
     background: #ffffff;
-    border-radius: 16px; /* Bordes redondeados en toda la caja */
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -283,7 +283,7 @@
   <div class="app-container">
     <div class="control-panel">
       <h2>Generador Gmail 2024</h2>
-      <p class="subtitle">Mockup actualizado con la nueva interfaz web.</p>
+      <p class="subtitle">Mockup actualizado con limpieza automática de texto.</p>
 
       <div class="form-group">
         <label for="input-name">Nombre del Remitente</label>
@@ -292,6 +292,7 @@
 
       <div class="form-group">
         <label for="input-email">Correo del Remitente</label>
+        <!-- Valor corregido sin espacios -->
         <input type="text" id="input-email" value="israel.lopez@fiscalesotman.com.mx">
       </div>
       
@@ -307,6 +308,7 @@
 
       <div class="form-group">
         <label for="input-body">Cuerpo del Mensaje</label>
+        <!-- Contenido limpio por defecto -->
         <div id="input-body" class="rich-textarea" contenteditable="true">
           <p>Hola, Myrna:</p>
           <p>Espero que también estés teniendo una excelente semana.</p>
@@ -328,7 +330,7 @@
       </button>
     </div>
 
-    <!-- Vista Previa (Plantilla de Gmail 2024) -->
+    <!-- Vista Previa -->
     <div class="preview-container">
       <div class="gmail-mockup" id="gmail-mockup">
         
@@ -498,8 +500,10 @@
       previewInitials.textContent = getInitials(val);
     });
 
+    // Filtro para destruir los espacios en blanco del email
     inputEmail.addEventListener('input', (e) => {
-      const val = e.target.value;
+      const val = e.target.value.replace(/\s+/g, '');
+      e.target.value = val; // Actualiza también el input visible
       previewEmail.textContent = `<${val}>`;
     });
 
@@ -515,15 +519,19 @@
       previewBody.innerHTML = e.target.innerHTML;
     });
 
+    // Filtro avanzado al pegar texto en el cuerpo del mensaje
     inputBody.addEventListener('paste', (e) => {
       e.preventDefault();
       const clipboardData = e.clipboardData || window.clipboardData;
       let htmlData = clipboardData.getData('text/html');
       
       if (htmlData) {
+        // Elimina los espacios vacíos justo antes de comas, puntos y dos puntos
+        htmlData = htmlData.replace(/\s+([,.:;])/g, '$1');
         document.execCommand('insertHTML', false, htmlData);
       } else {
         let textData = clipboardData.getData('text/plain');
+        textData = textData.replace(/\s+([,.:;])/g, '$1');
         let formattedText = textData.split('\n').map(line => `<p>${line}</p>`).join('');
         document.execCommand('insertHTML', false, formattedText);
       }
