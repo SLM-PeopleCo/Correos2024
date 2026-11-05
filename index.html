@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generador de Mockups de Gmail - Texto Enriquecido</title>
+<title>Generador de Mockups de Gmail 2024</title>
 <!-- Importar html2canvas vía CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <!-- Importar Google Material Symbols -->
@@ -21,14 +21,13 @@
     min-height: 100vh;
   }
 
-  /* Ajustes para los íconos de Material Symbols */
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
     font-size: 20px;
     vertical-align: middle;
   }
 
-  /* ===== Estructura Principal (Split View) ===== */
+  /* ===== Estructura Principal ===== */
   .app-container {
     display: flex;
     flex: 1;
@@ -36,7 +35,7 @@
     overflow: hidden;
   }
 
-  /* Panel de Control (Formulario) */
+  /* ===== Panel de Control ===== */
   .control-panel {
     width: 420px;
     background: #ffffff;
@@ -50,31 +49,11 @@
     z-index: 10;
   }
 
-  .control-panel h2 {
-    margin: 0 0 5px 0;
-    font-size: 22px;
-    color: #1a73e8;
-    font-weight: 500;
-  }
+  .control-panel h2 { margin: 0 0 5px 0; font-size: 22px; color: #1a73e8; font-weight: 500; }
+  .control-panel p.subtitle { margin: 0 0 10px 0; font-size: 13.5px; color: #5f6368; }
 
-  .control-panel p.subtitle {
-    margin: 0 0 10px 0;
-    font-size: 13.5px;
-    color: #5f6368;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .form-group label {
-    font-size: 13px;
-    font-weight: 600;
-    color: #3c4043;
-  }
-
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 13px; font-weight: 600; color: #3c4043; }
   .form-group input, .rich-textarea {
     padding: 12px 14px;
     border: 1px solid #dadce0;
@@ -84,7 +63,6 @@
     transition: all 0.2s;
     background: #f8f9fa;
   }
-
   .form-group input:focus, .rich-textarea:focus {
     outline: none;
     border-color: #1a73e8;
@@ -92,32 +70,14 @@
     box-shadow: 0 0 0 2px rgba(26,115,232,0.2);
   }
 
-  /* FORMATOS ENRIQUECIDOS Y CORRECCIÓN DE SALTOS DE LÍNEA */
-  .rich-textarea {
-    min-height: 200px; overflow-y: auto; outline: none;
-  }
-  
-  .rich-textarea, .body-text {
-    white-space: normal; /* Evita el pre-wrap para que los divs y p fluyan natural */
-    word-wrap: break-word;
-    line-height: 1.6;
-  }
-
-  /* Forzar renderizado de Negritas, Cursivas y Listas */
+  /* Textarea Enriquecido */
+  .rich-textarea { min-height: 200px; overflow-y: auto; outline: none; }
+  .rich-textarea, .body-text { white-space: normal; word-wrap: break-word; line-height: 1.6; }
   .rich-textarea b, .rich-textarea strong, .body-text b, .body-text strong { font-weight: bold !important; }
   .rich-textarea i, .rich-textarea em, .body-text i, .body-text em { font-style: italic !important; }
-  
-  .rich-textarea ul, .body-text ul {
-    display: block !important; list-style-type: disc !important;
-    margin: 12px 0 12px 24px !important; padding-left: 16px !important;
-  }
-  .rich-textarea ol, .body-text ol {
-    display: block !important; list-style-type: decimal !important;
-    margin: 12px 0 12px 24px !important; padding-left: 16px !important;
-  }
-  .rich-textarea li, .body-text li {
-    display: list-item !important; margin-bottom: 6px !important;
-  }
+  .rich-textarea ul, .body-text ul { display: block !important; list-style-type: disc !important; margin: 12px 0 12px 24px !important; padding-left: 16px !important; }
+  .rich-textarea ol, .body-text ol { display: block !important; list-style-type: decimal !important; margin: 12px 0 12px 24px !important; padding-left: 16px !important; }
+  .rich-textarea li, .body-text li { display: list-item !important; margin-bottom: 6px !important; }
   .rich-textarea p, .body-text p { margin: 0 0 12px 0 !important; }
 
   .download-btn {
@@ -133,260 +93,197 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    transition: background 0.2s, box-shadow 0.2s;
+    transition: background 0.2s;
     margin-top: 10px;
-    box-shadow: 0 1px 3px rgba(60,64,67,.3);
   }
+  .download-btn:hover:not(:disabled) { background: #1557b0; }
+  .download-btn:disabled { background: #a8c7fa; cursor: not-allowed; }
 
-  .download-btn:hover:not(:disabled) {
-    background: #1557b0;
-    box-shadow: 0 4px 8px rgba(60,64,67,.2);
-  }
-  
-  .download-btn:disabled {
-    background: #a8c7fa;
-    cursor: not-allowed;
-    box-shadow: none;
-  }
-
-  /* Contenedor del Preview */
+  /* ===== Contenedor del Preview ===== */
   .preview-container {
     flex: 1;
     overflow-y: auto;
-    background: #fbfcfe;
+    background: #ffffff; /* Fondo exterior para contraste del panel de control */
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 20px;
   }
 
-  /* Marco de la Plantilla de Gmail para exportar */
+  /* ===== MOCKUP GMAIL 2024 ===== */
   .gmail-mockup {
     width: 100%;
-    max-width: 1100px;
-    background: #fbfcfe;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    max-width: 1366px; /* Ancho ajustado para evitar zoom */
+    background: #f4f7fc; /* Fondo temático 2024 */
     overflow: hidden;
-    border: 1px solid #e1e3e6;
   }
 
-  a { text-decoration: none; color: inherit; }
-
-  /* ===== Top bar ===== */
+  /* Top bar 2024 */
   .topbar {
     display: flex;
     align-items: center;
-    height: 76px;
-    padding: 0 24px;
+    height: 64px;
+    padding: 0 16px 0 24px;
     gap: 20px;
-    background: #fbfcfe;
-    border-bottom: 1px solid #e1e3e6;
+    background: transparent;
   }
   .menu-icon { color: #5f6368; cursor: pointer; padding: 12px; border-radius: 50%; }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  .logo-text {
-    font-size: 22px;
-    color: #3c4043;
-    font-weight: 500;
-    letter-spacing: -0.5px;
-  }
+  .logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .logo-text { font-size: 22px; color: #444746; font-weight: 400; letter-spacing: -0.5px; }
   .search-bar {
     flex: 1;
-    max-width: 760px;
+    max-width: 720px;
     display: flex;
     align-items: center;
     background: #e9eef6;
     border-radius: 28px;
     height: 48px;
     padding: 0 8px;
-    color: #5f6368;
+    color: #444746;
     gap: 10px;
   }
-  .search-icon, .tune-icon { padding: 8px; border-radius: 50%; cursor: pointer; }
+  .search-icon, .tune-icon { padding: 8px; border-radius: 50%; cursor: pointer; color: #444746; }
   .search-bar span.placeholder { flex: 1; color: #444746; font-size: 16px; }
+  
   .topbar-right {
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: #5f6368;
+    gap: 4px;
+    color: #444746;
     flex-shrink: 0;
   }
   .status-pill {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid #dadce0;
-    border-radius: 20px;
-    padding: 6px 12px;
-    font-size: 14px;
-    color: #3c4043;
-    margin-right: 8px;
+    display: flex; align-items: center; gap: 8px;
+    background: #ffffff; border-radius: 20px; padding: 6px 12px;
+    font-size: 14px; color: #444746; margin-right: 8px;
   }
   .status-dot { width: 9px; height: 9px; border-radius: 50%; background: #1e8e3e; }
   .circle-icon {
     width: 40px; height: 40px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    color: #5f6368;
-    cursor: pointer;
+    color: #444746; cursor: pointer;
   }
   .avatar-google {
     width: 32px; height: 32px; border-radius: 50%;
     background: #dbe1e8; color: #5f6368;
     display: flex; align-items: center; justify-content: center;
-    margin-left: 6px;
+    margin-left: 8px;
   }
 
-  /* ===== Layout ===== */
-  .layout { display: flex; }
+  /* Layout 2024 */
+  .layout { 
+    display: flex; 
+    padding: 0 16px 16px 0; 
+    gap: 16px; 
+    height: calc(100% - 64px);
+  }
+  
+  /* Left Sidebar */
   .sidebar {
     width: 256px;
     flex-shrink: 0;
     padding: 12px 16px 0 16px;
   }
   .compose-btn {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: #c2e7ff;
-    color: #001d35;
-    border-radius: 16px;
-    padding: 16px 24px;
-    margin: 8px 0 20px 0;
-    font-weight: 500;
-    font-size: 15px;
+    display: flex; align-items: center; gap: 14px;
+    background: #c2e7ff; color: #001d35;
+    border-radius: 16px; padding: 16px 24px;
+    margin: 0 0 16px 0; font-weight: 500; font-size: 15px;
     width: fit-content;
   }
   .compose-btn .material-symbols-outlined { font-size: 24px; }
   .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding: 0 16px;
-    height: 32px;
-    border-radius: 16px;
-    color: #3c4043;
-    font-size: 14px;
-    cursor: pointer;
-    margin-bottom: 2px;
+    display: flex; align-items: center; gap: 18px;
+    padding: 0 16px; height: 32px; border-radius: 16px;
+    color: #444746; font-size: 14px; margin-bottom: 2px;
   }
   .nav-item.active { background: #d3e3fd; color: #001d35; font-weight: 700; }
-  .nav-item .count { margin-left: auto; font-weight: 400; font-size: 12px; color: #5f6368; }
+  .nav-item .count { margin-left: auto; font-weight: 400; font-size: 12px; color: #444746; }
   .nav-item.active .count { color: #001d35; font-weight: 700; }
-  .nav-icon { color: #5f6368; flex-shrink: 0; }
+  .nav-icon { color: #444746; flex-shrink: 0; font-size: 20px; }
   .nav-item.active .nav-icon { color: #001d35; font-variation-settings: 'FILL' 1; }
-  .nav-section-label {
-    display: flex; align-items: center; gap: 18px;
-    padding: 10px 16px; color: #3c4043; font-size: 14px; cursor: pointer;
+  
+  .labels-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 16px 8px 16px; color: #444746; font-size: 14px; font-weight: 500;
   }
 
+  /* Main Floating Container 2024 */
   .main {
     flex: 1;
     min-width: 0;
     background: #ffffff;
-    border-top-left-radius: 16px;
-    border-left: 1px solid #e1e3e6;
+    border-radius: 16px; /* Bordes redondeados en toda la caja */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
   .toolbar {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 12px 24px;
-    color: #5f6368;
+    display: flex; align-items: center; gap: 20px;
+    padding: 12px 24px; color: #444746;
   }
   .toolbar-icons { display: flex; align-items: center; gap: 20px; }
-  .pager { margin-left: auto; display: flex; align-items: center; gap: 12px; font-size: 12px; color: #5f6368; }
+  .pager { margin-left: auto; display: flex; align-items: center; gap: 12px; font-size: 12px; color: #444746; }
 
-  .msg-wrap { padding: 4px 32px 8px 32px; }
-  .subject-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 10px 0 26px 0;
-  }
+  .msg-wrap { padding: 4px 32px 8px 32px; flex: 1; }
+  .subject-row { display: flex; align-items: center; gap: 14px; padding: 10px 0 26px 0; }
   .subject-line { font-size: 22px; font-weight: 400; color: #1f1f1f; }
   .chip {
     display: flex; align-items: center; gap: 4px;
-    background: #dddddd; color: #444746; font-size: 12px;
+    background: #e9eef6; color: #444746; font-size: 12px;
     border-radius: 4px; padding: 2px 6px;
   }
-  .chip .material-symbols-outlined { font-size: 14px; cursor: pointer; }
-  .subject-row-icons { margin-left: auto; display: flex; gap: 16px; color: #5f6368; }
+  .chip .material-symbols-outlined { font-size: 14px; }
+  .subject-row-icons { margin-left: auto; display: flex; gap: 16px; color: #444746; }
 
-  .msg-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 4px 0 24px 0;
-  }
+  .msg-header { display: flex; align-items: flex-start; gap: 16px; padding: 4px 0 24px 0; }
   .avatar {
     width: 40px; height: 40px; border-radius: 50%;
-    background: #007b83;
-    color: #fff;
+    background: #007b83; color: #fff;
     display: flex; align-items: center; justify-content: center;
     font-size: 18px; font-weight: 500; flex-shrink: 0;
   }
   .msg-header-main { flex: 1; min-width: 0; }
   .sender-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-  .sender-name { font-size: 14px; font-weight: 700; color: #202124; }
+  .sender-name { font-size: 14px; font-weight: 700; color: #1f1f1f; }
   .sender-email { font-size: 12px; color: #5f6368; }
-  .to-line { font-size: 12px; color: #5f6368; margin-top: 2px; cursor: default; display: flex; align-items: center; gap: 4px; }
+  .to-line { font-size: 12px; color: #5f6368; margin-top: 2px; display: flex; align-items: center; gap: 4px; }
   .to-line .material-symbols-outlined { font-size: 16px; }
+  
   .msg-header-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    color: #5f6368;
-    font-size: 12px;
-    flex-shrink: 0;
-    margin-left: 12px;
+    display: flex; align-items: center; gap: 16px;
+    color: #444746; font-size: 12px; flex-shrink: 0; margin-left: 12px;
   }
 
-  .body-text {
-    font-size: 14px;
-    color: #202124;
-    padding-bottom: 34px;
-    max-width: 900px;
-  }
+  .body-text { font-size: 14px; color: #1f1f1f; padding-bottom: 34px; max-width: 900px; }
 
-  .action-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 4px 0 32px 0;
-  }
+  .action-row { display: flex; align-items: center; gap: 12px; padding: 4px 0 32px 0; }
   .action-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid #747775;
-    border-radius: 18px;
-    padding: 8px 16px;
-    font-size: 14px;
-    color: #444746;
-    font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid #747775; border-radius: 20px;
+    padding: 8px 16px; font-size: 14px; color: #444746; font-weight: 500;
   }
+  .action-btn.icon-only { padding: 8px; border-radius: 50%; }
   .action-btn .material-symbols-outlined { font-size: 18px; color: #444746; }
 
-  @media (max-width: 900px) {
-    .app-container { flex-direction: column; height: auto; overflow: auto; }
-    .control-panel { width: 100%; height: auto; }
-    .preview-container { height: auto; }
+  /* Right Sidebar (Google Workspace Icons) */
+  .right-sidebar {
+    width: 48px; flex-shrink: 0;
+    display: flex; flex-direction: column; align-items: center; gap: 24px;
+    padding-top: 12px; color: #444746;
   }
+  .workspace-icon { width: 20px; height: 20px; font-size: 20px; color: #444746; }
+  .divider { width: 20px; height: 1px; background: #dadce0; }
+
 </style>
 </head>
 <body>
 
   <div class="app-container">
     <div class="control-panel">
-      <h2>Generador Gmail</h2>
-      <p class="subtitle">Personaliza los campos y descarga tu mockup en tiempo real.</p>
+      <h2>Generador Gmail 2024</h2>
+      <p class="subtitle">Mockup actualizado con la nueva interfaz web.</p>
 
       <div class="form-group">
         <label for="input-name">Nombre del Remitente</label>
@@ -409,7 +306,7 @@
       </div>
 
       <div class="form-group">
-        <label for="input-body">Cuerpo del Mensaje (Pega tu texto aquí)</label>
+        <label for="input-body">Cuerpo del Mensaje</label>
         <div id="input-body" class="rich-textarea" contenteditable="true">
           <p>Hola, Myrna:</p>
           <p>Espero que también estés teniendo una excelente semana.</p>
@@ -431,13 +328,14 @@
       </button>
     </div>
 
-    <!-- Vista Previa (Plantilla de Gmail) -->
+    <!-- Vista Previa (Plantilla de Gmail 2024) -->
     <div class="preview-container">
       <div class="gmail-mockup" id="gmail-mockup">
+        
         <div class="topbar">
           <span class="material-symbols-outlined menu-icon">menu</span>
           <div class="logo">
-            <svg width="42" height="32" viewBox="0 0 48 36" xmlns="http://www.w3.org/2000/svg">
+            <svg width="34" height="26" viewBox="0 0 48 36" xmlns="http://www.w3.org/2000/svg">
               <rect x="1" y="1" width="46" height="34" rx="5" fill="#ffffff"/>
               <path d="M7 27 L7 10" stroke="#4285F4" stroke-width="7" stroke-linecap="round" fill="none"/>
               <path d="M7 10 L24 22" stroke="#EA4335" stroke-width="7" stroke-linecap="round" fill="none"/>
@@ -462,19 +360,18 @@
 
         <div class="layout">
           <div class="sidebar">
-            <div class="compose-btn"><span class="material-symbols-outlined">edit</span> Redactar</div>
+            <div class="compose-btn"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 0, 'wght' 300;">edit</span> Redactar</div>
             <div class="nav-item active"><span class="material-symbols-outlined nav-icon">inbox</span> Recibidos <span class="count" id="inbox-count"></span></div>
             <div class="nav-item"><span class="material-symbols-outlined nav-icon">star</span> Destacados</div>
             <div class="nav-item"><span class="material-symbols-outlined nav-icon">schedule</span> Pospuestos</div>
             <div class="nav-item"><span class="material-symbols-outlined nav-icon">send</span> Enviados</div>
             <div class="nav-item"><span class="material-symbols-outlined nav-icon">drafts</span> Borradores</div>
-            <div class="nav-item"><span class="material-symbols-outlined nav-icon">expand_more</span> Categorías</div>
-            <div class="nav-section-label"><span class="material-symbols-outlined nav-icon" style="font-size:18px;">expand_more</span> Más</div>
-            <div class="nav-item"><span class="material-symbols-outlined nav-icon">label_important</span> Importantes</div>
-            <div class="nav-item"><span class="material-symbols-outlined nav-icon">schedule_send</span> Programados</div>
-            <div class="nav-item"><span class="material-symbols-outlined nav-icon">all_inbox</span> Todos</div>
-            <div class="nav-item"><span class="material-symbols-outlined nav-icon">report</span> Spam</div>
-            <div class="nav-item"><span class="material-symbols-outlined nav-icon">delete</span> Papelera</div>
+            <div class="nav-item"><span class="material-symbols-outlined nav-icon">expand_more</span> Más</div>
+            
+            <div class="labels-header">
+              <span>Etiquetas</span>
+              <span class="material-symbols-outlined" style="font-size: 18px; cursor: pointer;">add</span>
+            </div>
           </div>
 
           <div class="main">
@@ -518,6 +415,7 @@
                 <div class="msg-header-right">
                   <span id="preview-time">vie, 8 sep 2023, 9:51 a. m.</span>
                   <span class="material-symbols-outlined">star</span>
+                  <span class="material-symbols-outlined">add_reaction</span>
                   <span class="material-symbols-outlined">reply</span>
                   <span class="material-symbols-outlined">more_vert</span>
                 </div>
@@ -535,9 +433,21 @@
                 <div class="action-btn"><span class="material-symbols-outlined">reply</span> Responder</div>
                 <div class="action-btn"><span class="material-symbols-outlined">reply_all</span> Responder a todos</div>
                 <div class="action-btn"><span class="material-symbols-outlined">forward</span> Reenviar</div>
+                <div class="action-btn icon-only"><span class="material-symbols-outlined">add_reaction</span></div>
               </div>
             </div>
           </div>
+          
+          <!-- Workspace Sidebar Derecha -->
+          <div class="right-sidebar">
+            <span class="material-symbols-outlined workspace-icon" style="color: #1a73e8;">calendar_month</span>
+            <span class="material-symbols-outlined workspace-icon" style="color: #fbbc04;">lightbulb</span>
+            <span class="material-symbols-outlined workspace-icon" style="color: #1e8e3e;">task_alt</span>
+            <span class="material-symbols-outlined workspace-icon" style="color: #1a73e8;">contacts</span>
+            <div class="divider"></div>
+            <span class="material-symbols-outlined workspace-icon">add</span>
+          </div>
+
         </div>
       </div>
     </div>
@@ -566,13 +476,11 @@
     const totalCount = document.getElementById('total-count');
 
     window.addEventListener('DOMContentLoaded', () => {
-      // Aleatorio para Recibidos (entre 15 y 450)
-      const randomInbox = Math.floor(Math.random() * (450 - 15 + 1)) + 15;
+      const randomInbox = Math.floor(Math.random() * (11490 - 15 + 1)) + 15;
       inboxCount.textContent = randomInbox;
 
-      // Aleatorio para Total de Correos (entre 1,000 y 25,000)
-      const randomTotal = Math.floor(Math.random() * (25000 - 1000 + 1)) + 1000;
-      totalCount.textContent = randomTotal.toLocaleString('en-US');
+      const randomTotal = Math.floor(Math.random() * (25000 - 11000 + 1)) + 11000;
+      totalCount.textContent = randomTotal.toLocaleString('es-ES');
     });
 
     function getInitials(name) {
@@ -603,12 +511,10 @@
       previewSubject.textContent = e.target.value;
     });
 
-    // Mapeo en tiempo real del HTML
     inputBody.addEventListener('input', (e) => {
       previewBody.innerHTML = e.target.innerHTML;
     });
 
-    // Filtro de pegado para unificar saltos de línea sin destruir listas ni negritas
     inputBody.addEventListener('paste', (e) => {
       e.preventDefault();
       const clipboardData = e.clipboardData || window.clipboardData;
@@ -617,7 +523,6 @@
       if (htmlData) {
         document.execCommand('insertHTML', false, htmlData);
       } else {
-        // Si pegan texto plano, lo convertimos a párrafos
         let textData = clipboardData.getData('text/plain');
         let formattedText = textData.split('\n').map(line => `<p>${line}</p>`).join('');
         document.execCommand('insertHTML', false, formattedText);
@@ -635,10 +540,7 @@
       const dd = String(fecha.getDate()).padStart(2, '0');
       const fechaCorta = `${mm}-${dd}`;
       
-      const festivosOficiales = [
-        '01-01', '02-05', '03-21', '05-01', '09-16', '10-01', '11-20', '12-25'
-      ];
-
+      const festivosOficiales = ['01-01', '02-05', '03-21', '05-01', '09-16', '10-01', '11-20', '12-25'];
       if (festivosOficiales.includes(fechaCorta)) return false;
       
       return true;
@@ -686,40 +588,35 @@
       downloadBtn.innerHTML = '<span class="material-symbols-outlined">hourglass_empty</span> Generando imagen...';
       downloadBtn.disabled = true;
 
-      // Esperar a que la fuente Material Symbols esté lista antes de tomar foto
       document.fonts.ready.then(() => {
         html2canvas(gmailMockup, {
           scale: 2, 
-          width: 1090,
-          windowWidth: 1090,
+          width: 1366,
+          windowWidth: 1366,
           useCORS: true,
           logging: false,
           onclone: function(clonedDoc) {
-            clonedDoc.body.style.width = '1090px';
-            clonedDoc.body.style.minWidth = '1090px';
+            clonedDoc.body.style.width = '1366px';
+            clonedDoc.body.style.minWidth = '1366px';
 
             const clonedMockup = clonedDoc.getElementById('gmail-mockup');
-            clonedMockup.style.width = '1090px';
-            clonedMockup.style.minWidth = '1090px'; 
-            clonedMockup.style.maxWidth = '1090px';
+            clonedMockup.style.width = '1366px';
+            clonedMockup.style.minWidth = '1366px'; 
+            clonedMockup.style.maxWidth = '1366px';
             clonedMockup.style.height = 'auto'; 
             clonedMockup.style.maxHeight = 'none'; 
             clonedMockup.style.margin = '0';
             clonedMockup.style.borderRadius = '0'; 
-            clonedMockup.style.border = 'none';
-            clonedMockup.style.boxShadow = 'none';
             
-            const sidebar = clonedMockup.querySelector('.sidebar');
-            const main = clonedMockup.querySelector('.main');
-            if(sidebar) sidebar.style.flexShrink = '0';
-            if(main) main.style.flexShrink = '0';
+            const layout = clonedMockup.querySelector('.layout');
+            if (layout) layout.style.height = 'auto';
           }
         }).then(canvas => {
           const imageURL = canvas.toDataURL('image/png');
 
           let rawSubject = inputSubject.value;
           let safeName = rawSubject.replace(/[<>:"/\\|?*\x00-\x1F]/g, '').trim();
-          if (!safeName) safeName = 'mockup-gmail'; 
+          if (!safeName) safeName = 'mockup-gmail-2024'; 
 
           const link = document.createElement('a');
           link.href = imageURL;
